@@ -1,0 +1,6 @@
+id=FixProCo2009
+name=ProCo2 - Module to support ProController version 2009
+version=v1.0.0
+versionCode=100
+author=Ashernor
+description=This Module adds Nintendo Pro Controller support

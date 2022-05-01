@@ -1,0 +1,16 @@
+ifelse(is_mounted("/system_root"), unmount("/system_root"));
+ifelse(is_mounted("/vendor"), unmount("/vendor"));
+ui_print("Mounting partitions");
+run_program("/sbin/toybox", "mount", "/system_root");
+run_program("/sbin/toybox", "mount", "/vendor");
+
+ui_print("Extracting into system directory");
+package_extract_dir("system", "/system_root/system");
+
+ui_print("Extracting into vendor directory");
+package_extract_dir("vendor", "/vendor");
+
+ui_print("Setting permissions to addon.d script");
+set_perm(0, 0, 0755, "/system_root/addon.d/99-joycond-xbox-layout.sh");
+unmount("/vendor");
+unmount("/system_root");
